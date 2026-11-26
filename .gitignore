@@ -1,0 +1,40 @@
+# Terraform generated files
+**/.terraform/
+
+# Terraform state and plans
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Environment Variables & Secrets
+.env
+.env.*
+.streamlit/secrets.toml
+*.pem
+*.key
+credentials
+
+# macOS Metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE / Agent State
+.claude/
+.agents/
+
+gittoken.txt
+.terraform/

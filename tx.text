@@ -1,0 +1,2 @@
+${fraud_queue_arn} ==  "arn:aws:connect:us-east-1:501046919017:instance/10cbce69-375a-4650-b14c-9b53be745e5a/queue/3574601b-cffb-41db-8775-e84288dd8e82"
+${cards_queue_arn} ==  "arn:aws:connect:us-east-1:501046919017:instance/10cbce69-375a-4650-b14c-9b53be745e5a/queue/220bacaa-2e61-4b59-b3e6-77bc9867238b"
