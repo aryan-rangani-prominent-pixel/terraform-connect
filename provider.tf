@@ -1,9 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = "there-is-a-bucket-for-state-locking"
-    key = "dev/for development"
-    encrypt = true
-    region = "us-east-1"
+    bucket       = "aryan-connect-tfstate-2026"
+    key          = "ar-connect/terraform.tfstate"
+    region       = "us-east-1"
     use_lockfile = true
   }
   required_providers {

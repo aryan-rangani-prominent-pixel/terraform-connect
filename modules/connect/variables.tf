@@ -10,7 +10,6 @@ variable "user_name" {
 variable "user_password" {
   type      = string
   sensitive = true
-  default = "password123"
 }
 
 variable "first_name" {

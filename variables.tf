@@ -84,14 +84,10 @@
 
 
 
-variable "instance_id" {
-  type    = string
-  default = "10cbce69-375a-4650-b14c-9b53be745e5a"
-}
 
 variable "user_name" {
   type    = string
-  default = "demo"
+  default = "ar_demo"
 }
 
 variable "user_password" {
@@ -111,7 +107,7 @@ variable "last_name" {
 
 variable "routing_profile_name" {
   type    = string
-  default = "bank_routing_demo_profile"
+  default = "ar_bank_routing_demo_profile"
 }
 
 variable "security_profile_name" {
@@ -119,20 +115,7 @@ variable "security_profile_name" {
   default = "ar_demo_sec"
 }
 
-variable "default_outbound_queue_id" {
-  type    = string
-  default = "3574601b-cffb-41db-8775-e84288dd8e82"
-}
 
-variable "fraud_queue_id" {
-  type    = string
-  default = "3574601b-cffb-41db-8775-e84288dd8e82"
-}
-
-variable "cards_queue_id" {
-  type    = string
-  default = "220bacaa-2e61-4b59-b3e6-77bc9867238b"
-}
 
 variable "contact_flow_id" {
   type    = string
@@ -141,5 +124,5 @@ variable "contact_flow_id" {
 
 variable "quick_connect_name" {
   type    = string
-  default = "demo_connect_bank"
+  default = "ar_demo_connect_bank"
 }

@@ -6,6 +6,10 @@
 #   //outbound_calls_enabled = true
 # }
 
+data "aws_connect_instance" "existing" {
+  instance_alias = "digiclarity-training-v1"
+}
+
 # /*resource "aws_connect_instance_storage_config" "storageandkms" {
 #     instance_id = "10cbce69-375a-4650-b14c-9b53be745e5a"
 #     resource_type = "CALL_RECORDINGS"
@@ -50,26 +54,26 @@
 #   name        = "ar_Card_Routing"
 # }*/
 
-resource "aws_connect_routing_profile" "new_routing" {
-  instance_id = data.aws_connect_instance.existing.id
-  name = "bank_routing_demo_profile"
-  default_outbound_queue_id = data.aws_connect_queue.fraud_queues.queue_id //bank fruad
-  description = "for demo only"
-  media_concurrencies {
-    channel = "VOICE"
-    concurrency = 1
-    cross_channel_behavior {
-      behavior_type = "ROUTE_ANY_CHANNEL"
-    }
-  }
+# resource "aws_connect_routing_profile" "new_routing" {
+#   instance_id = data.aws_connect_instance.existing.id
+#   name = "ar_bank_routing_demo_profile"
+#   default_outbound_queue_id = data.aws_connect_queue.fraud_queues.queue_id //bank fruad
+#   description = "for demo only"
+#   media_concurrencies {
+#     channel = "VOICE"
+#     concurrency = 1
+#     cross_channel_behavior {
+#       behavior_type = "ROUTE_ANY_CHANNEL"
+#     }
+#   }
 
-  queue_configs {
-    channel = "VOICE"
-    delay = 0
-    priority = 1
-    queue_id = data.aws_connect_queue.fraud_queues.queue_id //bank fruad
-  }
-}
+#   queue_configs {
+#     channel = "VOICE"
+#     delay = 0
+#     priority = 1
+#     queue_id = data.aws_connect_queue.fraud_queues.queue_id //bank fruad
+#   }
+# }
 
 # /*data "aws_connect_security_profile" "existing_security" {
 #   instance_id = data.aws_connect_instance.existing.id
@@ -118,12 +122,12 @@ data "aws_connect_queue" "fraud_queues" {
   //max_contacts = "7"
 }
 
-resource "aws_connect_queue" "test" {
-  instance_id           = "10cbce69-375a-4650-b14c-9b53be745e5a"
-  name                  = "ar_example_tf"
-  description           = "for terraform only"
-  hours_of_operation_id = aws_connect_hours_of_operation.office_hours.hours_of_operation_id
-}
+# resource "aws_connect_queue" "test" {
+#   instance_id           = "10cbce69-375a-4650-b14c-9b53be745e5a"
+#   name                  = "ar_example_tf"
+#   description           = "for terraform only"
+#   hours_of_operation_id = aws_connect_hours_of_operation.office_hours.hours_of_operation_id
+# }
 
 # data "aws_connect_quick_connect" "existing_connect" {
 #     instance_id = "10cbce69-375a-4650-b14c-9b53be745e5a"
