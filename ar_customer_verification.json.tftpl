@@ -1,0 +1,109 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "welcome",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {},
+    "Annotations": []
+  },
+  "Actions": [
+    {
+      "Identifier": "welcome",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Welcome to the bank helpline. Please enter your customer ID."
+      },
+      "Transitions": {
+        "NextAction": "input_customer_id"
+      }
+    },
+    {
+      "Identifier": "input_customer_id",
+      "Type": "GetParticipantInput",
+      "Parameters": {
+        "StoreInput": "CustomerId",
+        "InputTimeLimitSeconds": "5",
+        "DTMFInput": {
+          "Enabled": true,
+          "MaxDigits": 5,
+          "Terminator": "#"
+        }
+      },
+      "Transitions": {
+        "NextAction": "invoke_customer_lambda",
+        "Errors": [
+          {
+            "ErrorType": "InputTimeout",
+            "NextAction": "disconnect"
+          },
+          {
+            "ErrorType": "NoMatchingError",
+            "NextAction": "disconnect"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "invoke_customer_lambda",
+      "Type": "InvokeLambdaFunction",
+      "Parameters": {
+        "LambdaFunctionARN": "${customer_lambda_arn}",
+        "InvocationTimeLimitSeconds": "8",
+        "InvocationType": "SYNCHRONOUS",
+        "Parameters": {
+          "customer_id": "$.CustomerId"
+        }
+      },
+      "Transitions": {
+        "NextAction": "verified",
+        "Conditions": [
+          {
+            "Condition": "Equals",
+            "ConditionValue": "VERIFIED",
+            "NextAction": "verified"
+          },
+          {
+            "Condition": "Equals",
+            "ConditionValue": "NOT_VERIFIED",
+            "NextAction": "not_verified"
+          }
+        ],
+        "Errors": [
+          {
+            "ErrorType": "NoMatchingError",
+            "NextAction": "disconnect"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "verified",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Customer verification successful."
+      },
+      "Transitions": {
+        "NextAction": "disconnect"
+      }
+    },
+    {
+      "Identifier": "not_verified",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Customer could not be verified."
+      },
+      "Transitions": {
+        "NextAction": "disconnect"
+      }
+    },
+    {
+      "Identifier": "disconnect",
+      "Type": "DisconnectParticipant",
+      "Parameters": {},
+      "Transitions": {}
+    }
+  ]
+}

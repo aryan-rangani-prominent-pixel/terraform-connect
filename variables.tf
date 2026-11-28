@@ -126,3 +126,11 @@ variable "quick_connect_name" {
   type    = string
   default = "ar_demo_connect_bank"
 }
+variable "database_password" {
+  type = string
+  sensitive = true
+}
+variable "api_secret" {
+  type = string
+  sensitive = true
+}

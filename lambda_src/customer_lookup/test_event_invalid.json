@@ -1,0 +1,12 @@
+{
+  "Details": {
+    "Parameters": {
+      "customer_id": "99999"
+    }
+  },
+  "Name": "ContactFlow",
+  "ContactData": {
+    "ContactId": "test-contact-001",
+    "Channel": "VOICE"
+  }
+}

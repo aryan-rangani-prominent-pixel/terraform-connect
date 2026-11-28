@@ -17,7 +17,8 @@ plan_review.txt
 venv/
 ENV/
 env/
-
+crash.log
+crash.*.log
 # Python Cache & Bytecode
 __pycache__/
 *.py[cod]
